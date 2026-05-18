@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="GalopTrans łączy siły z Hovera. Specjalistyczny transport koni - zapraszamy klientów i przewoźników do Hovera.app." />
+  <meta property="og:title" content="GalopTrans × Hovera - Nowy rozdział" />
+  <meta property="og:description" content="GalopTrans już nie operuje pod tym adresem. Zapraszamy klientów i przewoźników do Hovera.app." />
+  <meta property="og:type" content="website" />
+  <title>GalopTrans × Hovera - Nowy rozdział</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <nav class="lang-switch" role="tablist" aria-label="Language switch">
+      <button type="button" class="lang-btn active" data-lang="pl" role="tab" aria-selected="true">PL</button>
+      <span class="lang-sep">/</span>
+      <button type="button" class="lang-btn" data-lang="en" role="tab" aria-selected="false">EN</button>
+    </nav>
+
+    <section class="hero">
+      <div class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#c9a85c" />
+              <stop offset="100%" stop-color="#1a2a52" />
+            </linearGradient>
+          </defs>
+          <circle cx="100" cy="100" r="86" fill="none" stroke="url(#ring)" stroke-width="6" />
+          <path d="M70 145 Q70 90 100 78 Q118 70 130 60 Q128 78 122 92 Q142 102 142 130 L142 150 L70 150 Z"
+                fill="#1a2a52" />
+          <path d="M118 78 Q122 70 130 60 Q132 80 124 92" fill="#c9a85c" opacity="0.85" />
+          <circle cx="118" cy="100" r="3" fill="#f6efdc" />
+        </svg>
+      </div>
+
+      <h1 class="title">
+        <span data-pl="Nowy rozdział" data-en="A new chapter"></span>
+      </h1>
+      <p class="subtitle">
+        <span data-pl="Hovera łączy siły z GalopTrans"
+              data-en="Hovera joins forces with GalopTrans"></span>
+      </p>
+
+      <div class="card">
+        <p class="lead">
+          <span data-pl="GalopTrans nie operuje już pod tym adresem."
+                data-en="GalopTrans no longer operates at this address."></span>
+        </p>
+        <p class="body">
+          <span data-pl="Wszystkich naszych klientów i przewoźników zapraszamy do dołączenia do platformy Hovera - kolejnego rozdziału specjalistycznego transportu koni."
+                data-en="We invite all our clients and carriers to join Hovera - the next chapter of specialised horse transport."></span>
+        </p>
+
+        <a class="cta" href="https://hovera.app" rel="noopener">
+          <span data-pl="Przejdź do Hovera.app" data-en="Go to Hovera.app"></span>
+          <svg class="arrow" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <p class="patron">
+          <span data-pl="Pod patronatem" data-en="Under the patronage of"></span>
+          <strong>GalopTrans</strong>
+        </p>
+      </div>
+
+      <p class="legacy">
+        <span data-pl="Dziedzictwo i rozwój - specjalistyczny transport koni"
+              data-en="Heritage and growth - specialised horse transport"></span>
+      </p>
+    </section>
+
+    <footer class="footer">
+      <span data-pl="© GalopTrans &nbsp;·&nbsp; Wszelkie prawa zastrzeżone"
+            data-en="© GalopTrans &nbsp;·&nbsp; All rights reserved"></span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll('.lang-btn');
+      const html = document.documentElement;
+
+      function setLang(lang) {
+        html.lang = lang;
+        document.querySelectorAll('[data-pl][data-en]').forEach(el => {
+          el.innerHTML = el.getAttribute('data-' + lang);
+        });
+        buttons.forEach(b => {
+          const active = b.dataset.lang === lang;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+      }
+
+      buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+      let initial = 'pl';
+      try {
+        const saved = localStorage.getItem('lang');
+        if (saved === 'pl' || saved === 'en') initial = saved;
+        else if ((navigator.language || '').toLowerCase().startsWith('en')) initial = 'en';
+      } catch (e) {}
+      setLang(initial);
+    })();
+  </script>
+</body>
+</html>
