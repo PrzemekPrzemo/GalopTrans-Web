@@ -23,29 +23,20 @@
     </nav>
 
     <section class="hero">
-      <div class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#c9a85c" />
-              <stop offset="100%" stop-color="#1a2a52" />
-            </linearGradient>
-          </defs>
-          <circle cx="100" cy="100" r="86" fill="none" stroke="url(#ring)" stroke-width="6" />
-          <path d="M70 145 Q70 90 100 78 Q118 70 130 60 Q128 78 122 92 Q142 102 142 130 L142 150 L70 150 Z"
-                fill="#1a2a52" />
-          <path d="M118 78 Q122 70 130 60 Q132 80 124 92" fill="#c9a85c" opacity="0.85" />
-          <circle cx="118" cy="100" r="3" fill="#f6efdc" />
-        </svg>
-      </div>
-
-      <h1 class="title">
-        <span data-pl="Nowy rozdział" data-en="A new chapter"></span>
+      <h1 class="sr-only">
+        <span data-pl="GalopTrans łączy siły z Hovera - nowy rozdział"
+              data-en="GalopTrans joins forces with Hovera - a new chapter"></span>
       </h1>
-      <p class="subtitle">
-        <span data-pl="Hovera łączy siły z GalopTrans"
-              data-en="Hovera joins forces with GalopTrans"></span>
-      </p>
+
+      <picture class="hero-banner">
+        <img id="hero-banner"
+             src="assets/hero-pl.png"
+             data-src-pl="assets/hero-pl.png"
+             data-src-en="assets/hero-en.png"
+             data-alt-pl="Nowy rozdział: Hovera łączy siły z GalopTrans"
+             data-alt-en="A new chapter: Hovera joins forces with GalopTrans"
+             alt="Nowy rozdział: Hovera łączy siły z GalopTrans" />
+      </picture>
 
       <div class="card">
         <p class="lead">
@@ -91,6 +82,11 @@
         html.lang = lang;
         document.querySelectorAll('[data-pl][data-en]').forEach(el => {
           el.innerHTML = el.getAttribute('data-' + lang);
+        });
+        document.querySelectorAll('[data-src-pl][data-src-en]').forEach(el => {
+          el.src = el.getAttribute('data-src-' + lang);
+          const altKey = 'data-alt-' + lang;
+          if (el.hasAttribute(altKey)) el.alt = el.getAttribute(altKey);
         });
         buttons.forEach(b => {
           const active = b.dataset.lang === lang;
